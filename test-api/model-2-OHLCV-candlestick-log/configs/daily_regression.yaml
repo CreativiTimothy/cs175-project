@@ -1,0 +1,28 @@
+project:
+  seed: 42
+  output_dir: outputs/daily_regression
+
+data:
+  path: data/raw/daily_bars.csv
+  processed_rows_path: data/processed/model_rows_regression.csv
+  timeframe: daily
+  symbols: []
+  window_size: 100
+  features: [open, high, low, close]
+  include_volume: false
+  train_fraction: 0.70
+  validation_fraction: 0.15
+
+model:
+  type: fnn
+  task: regression
+  hidden_sizes: [256, 128, 64]
+  dropout: 0.30
+
+training:
+  batch_size: 256
+  epochs: 80
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 10
+  decision_threshold: 0.0

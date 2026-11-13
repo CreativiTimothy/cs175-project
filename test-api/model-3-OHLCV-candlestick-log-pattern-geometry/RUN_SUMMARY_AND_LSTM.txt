@@ -1,0 +1,16 @@
+1. Copy your real data file into data/raw/daily_bars.csv.
+2. Copy .env only if you need to download newer data.
+3. Run: pytest -q
+4. Train summary FNN:
+   python -m src.train --config configs/daily_fnn_summary.yaml
+5. Evaluate summary FNN:
+   python -m src.evaluate --run-dir outputs/rich_summary_fnn_seed42
+6. Summary-matched baselines:
+   python -m src.baselines --config configs/daily_fnn_summary.yaml
+7. Train LSTM:
+   python -m src.train --config configs/daily_lstm_sequence.yaml
+8. Evaluate LSTM:
+   python -m src.evaluate --run-dir outputs/rich_lstm_seed42
+9. LSTM comparison baselines:
+   python -m src.baselines --config configs/daily_lstm_sequence.yaml
+10. Run backtests only after inspecting metrics.
