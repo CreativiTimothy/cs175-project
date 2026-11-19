@@ -1,0 +1,56 @@
+project:
+  seed: 42
+  output_dir: outputs/multitimeframe_rnn_seed42
+data:
+  target_timeframe: 1day
+  target_window: 100
+  include_volume: true
+  train_fraction: 0.7
+  validation_fraction: 0.15
+  final_holdout_start: '2026-01-02'
+  timeframes:
+    1week:
+      alpaca_timeframe: 1Week
+      duration: 1week
+      download_start: '2005-01-01'
+      path: data/raw/1week.csv
+    1day:
+      alpaca_timeframe: 1Day
+      duration: 1day
+      download_start: '2016-01-01'
+      path: data/raw/1day.csv
+    4hour:
+      alpaca_timeframe: 4Hour
+      duration: 4hour
+      download_start: '2024-01-01'
+      path: data/raw/4hour.csv
+    2hour:
+      alpaca_timeframe: 2Hour
+      duration: 2hour
+      download_start: '2024-01-01'
+      path: data/raw/2hour.csv
+    1hour:
+      alpaca_timeframe: 1Hour
+      duration: 1hour
+      download_start: '2024-01-01'
+      path: data/raw/1hour.csv
+    30min:
+      alpaca_timeframe: 30Min
+      duration: 30min
+      download_start: '2024-01-01'
+      path: data/raw/30min.csv
+model:
+  type: rnn
+  projection_size: 16
+  hidden_size: 32
+  context_hidden: 128
+  fusion_hidden: 32
+  dropout: 0.3
+training:
+  batch_size: 128
+  epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.001
+  patience: 15
+evaluation:
+  unlock_final_holdout: false
